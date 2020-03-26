@@ -1,6 +1,6 @@
 mat-toolbar {
     overflow: hidden;
-    width: 100%;
+    width: auto;
     min-width: 475px;
     padding: 10px 20px 10px 10px;
     font-size: 20px;
@@ -34,3 +34,7 @@ mat-toolbar:after {
     position: relative;
     widows: 100%;
 }
+
+.spacer {
+    flex: 1 1 auto;
+  }
