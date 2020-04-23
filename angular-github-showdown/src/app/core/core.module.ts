@@ -6,9 +6,10 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { MainContainerComponent } from './pages/landing-page/components';
 import { MaterialModule } from '../material/material.module';
 
+
 @NgModule({
   declarations: [
-    LandingPageComponent, 
+    LandingPageComponent,
     MainContainerComponent
   ],
   imports: [
@@ -16,6 +17,7 @@ import { MaterialModule } from '../material/material.module';
     SharedModule,
     MaterialModule
   ],
+  providers: [],
   exports: [
     LandingPageComponent
   ]
