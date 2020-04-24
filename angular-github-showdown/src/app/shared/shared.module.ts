@@ -4,8 +4,6 @@ import { MaterialModule } from '../material/material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-
-
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
   imports: [

@@ -30,6 +30,7 @@ export class AuthService {
     });
    }
 
+   /* Returns the Github auth provider */
    GithubAuth() {
     const provider = new auth.GithubAuthProvider();
     provider.addScope('repo:status');
@@ -39,6 +40,7 @@ export class AuthService {
     return this.AuthLogin( provider );
    }
 
+   /* Sign in with a pop-up (will work with any provider) */
    AuthLogin( provider ) {
      return this.angularFAuth.signInWithPopup( provider )
      .then(( result ) => {
@@ -51,6 +53,7 @@ export class AuthService {
      });
    }
 
+   /* Posts user data to firebase database */
    SetUserData(user: User) {
      const userRef: AngularFirestoreDocument<any> = this.angularFstore.doc(`users/${ user.uid }`);
      const userData: User = {
@@ -64,10 +67,17 @@ export class AuthService {
      });
    }
 
+   /* Signs the user out and removes data from localstorage  */
    SignOut() {
      return this.angularFAuth.signOut().then(() => {
        localStorage.removeItem('user');
        // TODO: ADD NAVIGATION TO LANDING PAGE
      });
+   }
+
+   /* Returns true if the user is logged in and false otherwise */
+    isLoggedIn(): boolean {
+     const user: User = JSON.parse(localStorage.getItem('user'));
+     return (user !== null ? true : false);
    }
 }

@@ -2,8 +2,11 @@
     <span>GS</span>
     <span class="spacer"></span>
     <div class="right-section">
-        <a mat-button>
+        <a mat-button *ngIf="!authenticated">
             LOG IN
+        </a>
+        <a mat-button *ngIf="authenticated">
+            LOG OUT
         </a>
     </div>
 </mat-toolbar>
