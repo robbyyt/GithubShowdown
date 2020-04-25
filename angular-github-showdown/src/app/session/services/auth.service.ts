@@ -47,15 +47,15 @@ export class AuthService {
        this.ngZone.run(() => {
          this.router.navigate(['']);
        });
-       this.SetUserData(result.user);
+       this.SetUserData(result.user, result.additionalUserInfo.username);
      }).catch( ( error ) => {
        window.alert(error);
      });
    }
 
    /* Posts user data to firebase database */
-   SetUserData(user: User) {
-     const userRef: AngularFirestoreDocument<any> = this.angularFstore.doc(`users/${ user.uid }`);
+   SetUserData(user: User, username: string) {
+     const userRef: AngularFirestoreDocument<any> = this.angularFstore.doc(`${ user.uid }/${username}`);
      const userData: User = {
       uid: user.uid,
       email: user.email,
