@@ -21,7 +21,8 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
   ],
   providers: [],
   exports: [
-    LandingPageComponent
+    LandingPageComponent,
+    MainPageComponent
   ]
 })
 export class CoreModule { }
