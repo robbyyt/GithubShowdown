@@ -48,8 +48,8 @@ export class AuthService {
        this.ngZone.run(() => {
          this.router.navigate(['']);
        });
-       this.username = result.additionalUserInfo.username;
-       this.SetUserData(result.user, this.username);
+  
+       this.SetUserData(result.user, result.additionalUserInfo.username);
      }).catch( ( error ) => {
        window.alert(error);
      });
@@ -57,6 +57,7 @@ export class AuthService {
 
    /* Posts user data to firebase database */
    SetUserData(user: User, username: string) {
+     localStorage.setItem('username', username);
      const userRef: AngularFirestoreDocument<any> = this.angularFstore.doc(`users/${ user.uid }`);
      const userData: User = {
       uid: user.uid,
@@ -78,7 +79,7 @@ export class AuthService {
    SignOut() {
      return this.angularFAuth.signOut().then(() => {
        localStorage.removeItem('user');
-       this.username = '';
+       localStorage.removeItem('username');
        // TODO: ADD NAVIGATION TO LANDING PAGE
      });
    }

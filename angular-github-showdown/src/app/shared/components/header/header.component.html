@@ -5,7 +5,7 @@
         <a mat-button *ngIf="!authenticated">
             LOG IN
         </a>
-        <a mat-button *ngIf="authenticated">
+        <a mat-button (click)="SignOut()" *ngIf="authenticated">
             LOG OUT
         </a>
     </div>
