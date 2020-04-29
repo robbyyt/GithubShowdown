@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   userData: User;
+  username: string;
 
   constructor(
     public angularFstore: AngularFirestore,
@@ -47,7 +48,8 @@ export class AuthService {
        this.ngZone.run(() => {
          this.router.navigate(['']);
        });
-       this.SetUserData(result.user, result.additionalUserInfo.username);
+       this.username = result.additionalUserInfo.username;
+       this.SetUserData(result.user, this.username);
      }).catch( ( error ) => {
        window.alert(error);
      });
@@ -55,14 +57,19 @@ export class AuthService {
 
    /* Posts user data to firebase database */
    SetUserData(user: User, username: string) {
-     const userRef: AngularFirestoreDocument<any> = this.angularFstore.doc(`${ user.uid }/${username}`);
+     const userRef: AngularFirestoreDocument<any> = this.angularFstore.doc(`users/${ user.uid }`);
      const userData: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL
      };
-     return userRef.set( userData, {
+     return userRef.set( {
+       ...userData,
+       username
+      }
+       ,
+       {
        merge: true
      });
    }
@@ -71,6 +78,7 @@ export class AuthService {
    SignOut() {
      return this.angularFAuth.signOut().then(() => {
        localStorage.removeItem('user');
+       this.username = '';
        // TODO: ADD NAVIGATION TO LANDING PAGE
      });
    }

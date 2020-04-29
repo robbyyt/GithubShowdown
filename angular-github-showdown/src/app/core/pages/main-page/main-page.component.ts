@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { AuthService } from 'src/app/session/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileDialogComponent } from './components/profile-dialog/profile-dialog.component';
 
 @Component({
   selector: 'app-main-page',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('dialogButton') private dialogButton: ElementRef;
 
-  ngOnInit(): void {
+  constructor(public authService: AuthService, public dialog: MatDialog) { }
+
+  ngOnInit(): void {}
+
+  openDialog() {
+    this.dialog.open(ProfileDialogComponent, {
+      data: {
+        ...this.authService.userData,
+      }
+    });
   }
-
 }

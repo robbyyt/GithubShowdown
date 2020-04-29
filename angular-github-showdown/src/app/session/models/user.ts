@@ -5,3 +5,6 @@ export interface User {
     photoURL: string;
  }
 
+export interface UserDoc extends User {
+    username: string;
+}
