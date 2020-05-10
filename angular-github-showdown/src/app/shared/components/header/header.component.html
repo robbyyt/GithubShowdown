@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
-    <span>GS</span>
+    <a class="app-title" (click)="gotoLanding()">GS</a>
     <span class="spacer"></span>
     <div class="right-section">
-        <a mat-button *ngIf="!authenticated">
+        <a mat-button *ngIf="!authenticated" (click)="gotoLogin()">
             LOG IN
         </a>
         <a mat-button (click)="SignOut()" *ngIf="authenticated">

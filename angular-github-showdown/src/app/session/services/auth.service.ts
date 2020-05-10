@@ -48,7 +48,7 @@ export class AuthService {
        this.ngZone.run(() => {
          this.router.navigate(['']);
        });
-  
+
        this.SetUserData(result.user, result.additionalUserInfo.username);
      }).catch( ( error ) => {
        window.alert(error);
@@ -80,7 +80,7 @@ export class AuthService {
      return this.angularFAuth.signOut().then(() => {
        localStorage.removeItem('user');
        localStorage.removeItem('username');
-       // TODO: ADD NAVIGATION TO LANDING PAGE
+       this.router.navigate(['']);
      });
    }
 

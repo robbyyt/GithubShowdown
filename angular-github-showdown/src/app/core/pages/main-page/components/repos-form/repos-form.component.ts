@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterViewChecked, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { GithubService } from 'src/app/core/services/github.service';
 import { RepoName } from 'src/app/core/models/RepoName';
@@ -11,10 +11,9 @@ import { RepoName } from 'src/app/core/models/RepoName';
   styleUrls: ['./repos-form.component.scss']
 })
 export class ReposFormComponent implements OnInit {
-  input1 = new FormControl();
-  input2 = new FormControl();
+  @Input() input1: string;
+  @Input() input2: string;
   options: any;
-  stringOptions: string;
   constructor(private githubService: GithubService) {}
 
   ngOnInit(): void {
@@ -25,5 +24,9 @@ export class ReposFormComponent implements OnInit {
     this.githubService.getUserRepos().subscribe( (result: RepoName[]) => {
       this.options = result;
     });
+  }
+
+  public compareRepos(): void {
+    this.githubService.getRepositoryData(this.input1, this.input2);
   }
 }

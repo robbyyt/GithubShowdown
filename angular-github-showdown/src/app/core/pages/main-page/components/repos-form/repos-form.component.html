@@ -1,7 +1,7 @@
 <form class="repo-inputs-form">
   <mat-form-field class="repo-textinput">
     <mat-label>Choose your gladiator</mat-label>
-    <input matInput placeholder="username/repositoryname" [formControl]="input1" [matAutocomplete]="auto">
+    <input matInput placeholder="username/repositoryname" [matAutocomplete]="auto" [(ngModel)]="input1" [ngModelOptions]="{standalone: true}">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let option of options" [value]="option.full_name">
         {{option.full_name}}
@@ -10,8 +10,8 @@
   </mat-form-field>
   <mat-form-field class="repo-textinput">
     <mat-label>Choose your challenger</mat-label>
-    <input matInput placeholder="username/repositoryname" [formControl]="input2">
+    <input matInput placeholder="username/repositoryname" [(ngModel)]="input2" [ngModelOptions]="{standalone: true}">
   </mat-form-field>
   <br>
-  <button class="mat-raised-button">Fight!</button>
+  <button class="mat-raised-button" (click)="compareRepos()">Fight!</button>
 </form>
