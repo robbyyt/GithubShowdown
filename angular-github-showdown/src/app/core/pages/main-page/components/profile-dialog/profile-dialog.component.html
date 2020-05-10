@@ -1,6 +1,13 @@
 <h1 mat-dialog-title>Your profile</h1>
 <div mat-dialog-content>
-    <ul>
-        <li>{{data.displayName}}</li>
-    </ul>
+  <div class="profile-pic">
+    <img src="{{data.photoURL}}">
+  </div>
+  <div class="user-info">
+    <h1>{{data.displayName}}</h1>
+    <h2>{{data.email}}</h2>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="signout()">Sign Out</button>
+  </div>
 </div>

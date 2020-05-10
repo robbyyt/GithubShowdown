@@ -8,7 +8,9 @@ import { MaterialModule } from '../material/material.module';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MainPageContentComponent } from './pages/main-page/components/main-page-content/main-page-content.component';
 import { ProfileDialogComponent } from './pages/main-page/components/profile-dialog/profile-dialog.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReposFormComponent } from './pages/main-page/components/repos-form/repos-form.component';
+import { RepoContainerComponent } from './pages/main-page/components/repo-container/repo-container.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,16 @@ import { ProfileDialogComponent } from './pages/main-page/components/profile-dia
     MainContainerComponent,
     MainPageComponent,
     MainPageContentComponent,
-    ProfileDialogComponent
+    ProfileDialogComponent,
+    ReposFormComponent,
+    RepoContainerComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   exports: [

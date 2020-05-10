@@ -18,6 +18,6 @@ export class HeaderComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
   public SignOut() {
-    this.authService.SignOut()
+    this.authService.SignOut();
   }
 }
