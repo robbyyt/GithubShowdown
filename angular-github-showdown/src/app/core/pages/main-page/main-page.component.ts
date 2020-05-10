@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/session/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogComponent } from './components/profile-dialog/profile-dialog.component';
@@ -8,13 +8,11 @@ import { ProfileDialogComponent } from './components/profile-dialog/profile-dial
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
 
   @ViewChild('dialogButton') private dialogButton: ElementRef;
 
   constructor(public authService: AuthService, public dialog: MatDialog) { }
-
-  ngOnInit(): void {}
 
   openDialog() {
     this.dialog.open(ProfileDialogComponent, {
@@ -23,4 +21,5 @@ export class MainPageComponent implements OnInit {
       }
     });
   }
+
 }

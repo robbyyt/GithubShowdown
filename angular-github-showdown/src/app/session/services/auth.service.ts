@@ -46,9 +46,8 @@ export class AuthService {
      return this.angularFAuth.signInWithPopup( provider )
      .then(( result ) => {
        this.ngZone.run(() => {
-         this.router.navigate(['']);
+         this.router.navigate(['main']);
        });
-
        this.SetUserData(result.user, result.additionalUserInfo.username);
      }).catch( ( error ) => {
        window.alert(error);

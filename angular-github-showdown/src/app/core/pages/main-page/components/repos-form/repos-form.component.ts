@@ -1,5 +1,4 @@
-import { Component, OnInit, AfterViewInit, AfterViewChecked, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { GithubService } from 'src/app/core/services/github.service';
 import { RepoName } from 'src/app/core/models/RepoName';
 

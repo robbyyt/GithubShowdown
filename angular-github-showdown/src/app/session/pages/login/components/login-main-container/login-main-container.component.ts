@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/session/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-main-container',
   templateUrl: './login-main-container.component.html',
   styleUrls: ['./login-main-container.component.scss']
 })
-export class LoginMainContainerComponent implements OnInit {
+export class LoginMainContainerComponent {
 
-  constructor(public authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
+  public login(): void {
+    this.authService.GithubAuth();
   }
 }
