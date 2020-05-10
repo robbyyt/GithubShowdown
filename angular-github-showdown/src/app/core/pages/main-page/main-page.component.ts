@@ -17,7 +17,6 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog() {
-    console.log(this.authService.userData);
     this.dialog.open(ProfileDialogComponent, {
       data: {
         ...this.authService.userData,

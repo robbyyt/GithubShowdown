@@ -1,14 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable, forkJoin } from 'rxjs';
 import { RepoName } from '../models/RepoName';
+import { RepositoryData } from '../models/RepositoryData';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class GithubService {
-  gitApi = 'https://api.github.com';
+  private gitApi = 'https://api.github.com';
+  private repoList: RepositoryData[];
+  private listUpdateEmitter: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(private http: HttpClient) { }
 
   getUserRepos() {
@@ -20,6 +25,35 @@ export class GithubService {
       }), catchError( error => {
         return throwError( 'Something went wrong!' );
       })
+    );
+  }
+
+  getRepoList(): RepositoryData[] {
+    return this.repoList; // returning a copy of the repoList array
+  }
+
+  get onRepoListUpdate() {
+    return this.listUpdateEmitter;
+  }
+
+  getRepositoryData(...repos: string[]) {
+    const repoObservables: Observable<any>[] = [];
+
+    for ( const repo of repos ) {
+      repoObservables.push(
+        this.http.get(`${this.gitApi}/repos/${repo}`)
+      );
+    }
+    // forkJoin makes sure we get the last emitted values
+    forkJoin(repoObservables).subscribe(
+      (results) => {
+        this.repoList = [];
+        for ( const repo of results ) {
+          const repoData: RepositoryData = new RepositoryData(repo);
+          this.repoList.push(repoData);
+        }
+        this.listUpdateEmitter.emit();
+      }
     );
   }
 }

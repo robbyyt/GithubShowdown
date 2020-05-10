@@ -1,1 +1,24 @@
-<p>repo-container works!</p>
+<div class="repo-container">
+  <img [src]="repository.repositoryData.owner.avatar_url" alt="profile-pic" class="profile-pic">
+  <h2 class="repo-title">{{repository.repositoryData.name}}</h2>
+  <mat-divider></mat-divider>
+  <div class="statistics">
+    <h3 class="repo-section">Stars</h3>
+    <button mat-icon-button color="primary">
+      <mat-icon>stars</mat-icon>
+    </button>
+    {{repository.repositoryData.stargazers_count}}
+    <h3>Forks</h3>
+    <button mat-icon-button color="primary">
+      <mat-icon>timeline</mat-icon>
+    </button>
+    {{repository.repositoryData.forks_count}}
+    <h3>Watchers</h3>
+    <button mat-icon-button color="primary">
+      <mat-icon>remove_red_eye</mat-icon>
+    </button>
+    {{repository.repositoryData.watchers}}
+  </div>
+  <mat-divider></mat-divider>
+</div>
+

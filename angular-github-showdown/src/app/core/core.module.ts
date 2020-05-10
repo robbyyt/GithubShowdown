@@ -11,6 +11,7 @@ import { ProfileDialogComponent } from './pages/main-page/components/profile-dia
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReposFormComponent } from './pages/main-page/components/repos-form/repos-form.component';
 import { RepoContainerComponent } from './pages/main-page/components/repo-container/repo-container.component';
+import { RepoComparatorComponent } from './pages/main-page/components/repo-comparator/repo-comparator.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RepoContainerComponent } from './pages/main-page/components/repo-contai
     MainPageContentComponent,
     ProfileDialogComponent,
     ReposFormComponent,
-    RepoContainerComponent
+    RepoContainerComponent,
+    RepoComparatorComponent
   ],
   imports: [
     CommonModule,
